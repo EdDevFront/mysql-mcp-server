@@ -1,6 +1,6 @@
 {
   "name": "@edsamo/mysql-mcp-server",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "MySQL Model Context Protocol Server for VS Code AI extensions with any MySQL server",
   "main": "dist/index.js",
   "bin": {
