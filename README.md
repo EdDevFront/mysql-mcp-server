@@ -1,18 +1,30 @@
 # MySQL MCP Server
 
-A Model Context Protocol (MCP) server that provides MySQL database access for VS Code AI extensions. Works with any MySQL or MariaDB server - local, remote, cloud, or containerized.
+Servidor MCP (Model Context Protocol) para fornecer acesso a bancos MySQL/MariaDB a extensões AI no VS Code.
 
-## Installation
+Este projeto funciona com qualquer instalação MySQL/MariaDB — local, remota, conteinerizada ou em nuvem.
+
+## Instalação
+
+Instale a versão publicada (scoped) globalmente:
 
 ```bash
-npm install -g mysql-mcp-server
+npm install -g @edsamo/mysql-mcp-server
 ```
 
-## Configuration
+Ou instale localmente no projeto:
 
-### Option 1: Using .vscode/mcp.json (Recommended)
+```bash
+npm install @edsamo/mysql-mcp-server
+```
 
-Create `.vscode/mcp.json` in your project:
+Após instalar globalmente, o comando disponível é `mcp-server-mysql`.
+
+## Configuração
+
+### Opção 1 — `.vscode/mcp.json` (recomendada por projeto)
+
+Crie `.vscode/mcp.json` no seu projeto:
 
 ```json
 {
@@ -24,16 +36,16 @@ Create `.vscode/mcp.json` in your project:
         "MYSQL_PORT": "3306",
         "MYSQL_USER": "root",
         "MYSQL_PASSWORD": "",
-        "MYSQL_DATABASE": "your_database"
+        "MYSQL_DATABASE": "sua_database"
       }
     }
   }
 }
 ```
 
-### Option 2: Using VS Code settings.json
+### Opção 2 — `settings.json` do VS Code (configuração global)
 
-Add to your VS Code `settings.json`:
+Adicione em `settings.json` do VS Code:
 
 ```json
 {
@@ -45,28 +57,72 @@ Add to your VS Code `settings.json`:
         "MYSQL_PORT": "3306",
         "MYSQL_USER": "root",
         "MYSQL_PASSWORD": "",
-        "MYSQL_DATABASE": "your_database"
+        "MYSQL_DATABASE": "sua_database"
       }
     }
   }
 }
 ```
 
-To access settings.json:
+Para abrir `settings.json` no VS Code: `Ctrl+Shift+P` → "Preferences: Open Settings (JSON)".
 
-- Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac)
-- Type "Preferences: Open Settings (JSON)"
-- Add the configuration above
+## Exemplos de uso
 
-## Features
+Exemplos de `env` comuns:
 
-- SQL query execution
-- Table listing
-- Schema inspection
-- Works with any MySQL/MariaDB server
-- Remote database support
-- Cloud database compatibility
+- Local (XAMPP/WAMP):
 
-## License
+```json
+{
+  "MYSQL_HOST": "localhost",
+  "MYSQL_PORT": "3306",
+  "MYSQL_USER": "root",
+  "MYSQL_PASSWORD": "",
+  "MYSQL_DATABASE": "app_db"
+}
+```
+
+- Docker (porta customizada):
+
+```json
+{
+  "MYSQL_HOST": "localhost",
+  "MYSQL_PORT": "3307",
+  "MYSQL_USER": "mysql_user",
+  "MYSQL_PASSWORD": "mysql_pass",
+  "MYSQL_DATABASE": "app_db"
+}
+```
+
+- Remoto (VPS / IP público):
+
+```json
+{
+  "MYSQL_HOST": "203.0.113.10",
+  "MYSQL_PORT": "3306",
+  "MYSQL_USER": "remote_user",
+  "MYSQL_PASSWORD": "secure",
+  "MYSQL_DATABASE": "prod_db"
+}
+```
+
+## Funcionalidades
+
+- Execução de queries SQL (`mysql_query`)
+- Listagem de tabelas (`mysql_list_tables`)
+- Descrição de esquema (`mysql_describe_table`)
+- Suporte a conexões remotas e via SSH tunnel
+
+## Como publicar (referência)
+
+Se precisar publicar você mesmo, use o nome scoped (`@seu-usuario/mysql-mcp-server`) e execute:
+
+```bash
+npm login
+npm run build
+npm publish --access public
+```
+
+## Licença
 
 MIT
