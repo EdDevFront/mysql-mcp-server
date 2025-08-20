@@ -26,103 +26,121 @@ Após instalar globalmente, o comando disponível é `mcp-server-mysql`.
 
 Crie `.vscode/mcp.json` no seu projeto:
 
-```json
+````json
 {
   "servers": {
     "mysql": {
       "command": "mcp-server-mysql",
       "env": {
         "MYSQL_HOST": "localhost",
-        "MYSQL_PORT": "3306",
-        "MYSQL_USER": "root",
-        "MYSQL_PASSWORD": "",
-        "MYSQL_DATABASE": "sua_database"
-      }
-    }
-  }
-}
-```
+        # MySQL MCP Server
 
-### Opção 2 — `settings.json` do VS Code (configuração global)
+        This is a Model Context Protocol (MCP) server that provides MySQL/MariaDB access to AI extensions in VS Code.
 
-Adicione em `settings.json` do VS Code:
+        It works with any MySQL/MariaDB installation — local, remote, containerized, or cloud-hosted.
 
-```json
-{
-  "mcp.servers": {
-    "mysql": {
-      "command": "mcp-server-mysql",
-      "env": {
-        "MYSQL_HOST": "localhost",
-        "MYSQL_PORT": "3306",
-        "MYSQL_USER": "root",
-        "MYSQL_PASSWORD": "",
-        "MYSQL_DATABASE": "sua_database"
-      }
-    }
-  }
-}
-```
+        ## Installation
 
-Para abrir `settings.json` no VS Code: `Ctrl+Shift+P` → "Preferences: Open Settings (JSON)".
+        Install the published scoped package globally:
 
-## Exemplos de uso
+        ```bash
+        npm install -g @edsamo/mysql-mcp-server
+        ```
 
-Exemplos de `env` comuns:
+        Or install it locally in a project:
 
-- Local (XAMPP/WAMP):
+        ```bash
+        npm install @edsamo/mysql-mcp-server
+        ```
 
-```json
-{
-  "MYSQL_HOST": "localhost",
-  "MYSQL_PORT": "3306",
-  "MYSQL_USER": "root",
-  "MYSQL_PASSWORD": "",
-  "MYSQL_DATABASE": "app_db"
-}
-```
+        After installing globally, the `mcp-server-mysql` command will be available.
 
-- Docker (porta customizada):
+        ## Configuration
 
-```json
-{
-  "MYSQL_HOST": "localhost",
-  "MYSQL_PORT": "3307",
-  "MYSQL_USER": "mysql_user",
-  "MYSQL_PASSWORD": "mysql_pass",
-  "MYSQL_DATABASE": "app_db"
-}
-```
+        ### Option 1 — `.vscode/mcp.json` (per-project, recommended)
 
-- Remoto (VPS / IP público):
+        Create `.vscode/mcp.json` in your project:
 
-```json
-{
-  "MYSQL_HOST": "203.0.113.10",
-  "MYSQL_PORT": "3306",
-  "MYSQL_USER": "remote_user",
-  "MYSQL_PASSWORD": "secure",
-  "MYSQL_DATABASE": "prod_db"
-}
-```
+        ```json
+        {
+          "servers": {
+            "mysql": {
+              "command": "mcp-server-mysql",
+              "env": {
+                "MYSQL_HOST": "localhost",
+                "MYSQL_PORT": "3306",
+                "MYSQL_USER": "root",
+                "MYSQL_PASSWORD": "",
+                "MYSQL_DATABASE": "your_database"
+              }
+            }
+          }
+        }
+        ```
 
-## Funcionalidades
+        ### Option 2 — VS Code `settings.json` (global)
 
-- Execução de queries SQL (`mysql_query`)
-- Listagem de tabelas (`mysql_list_tables`)
-- Descrição de esquema (`mysql_describe_table`)
-- Suporte a conexões remotas e via SSH tunnel
+        Add to your VS Code `settings.json`:
 
-## Como publicar (referência)
+        ```json
+        {
+          "mcp.servers": {
+            "mysql": {
+              "command": "mcp-server-mysql",
+              "env": {
+                "MYSQL_HOST": "localhost",
+                "MYSQL_PORT": "3306",
+                "MYSQL_USER": "root",
+                "MYSQL_PASSWORD": "",
+                "MYSQL_DATABASE": "your_database"
+              }
+            }
+          }
+        }
+        ```
 
-Se precisar publicar você mesmo, use o nome scoped (`@seu-usuario/mysql-mcp-server`) e execute:
+        To open `settings.json` in VS Code: `Ctrl+Shift+P` → "Preferences: Open Settings (JSON)".
 
-```bash
-npm login
-npm run build
-npm publish --access public
-```
+        ## Usage examples
 
-## Licença
+        Common `env` examples:
 
-MIT
+        - Local (XAMPP/WAMP):
+
+        ```json
+        {"MYSQL_HOST":"localhost","MYSQL_PORT":"3306","MYSQL_USER":"root","MYSQL_PASSWORD":"","MYSQL_DATABASE":"app_db"}
+        ```
+
+        - Docker (custom port):
+
+        ```json
+        {"MYSQL_HOST":"localhost","MYSQL_PORT":"3307","MYSQL_USER":"mysql_user","MYSQL_PASSWORD":"mysql_pass","MYSQL_DATABASE":"app_db"}
+        ```
+
+        - Remote (VPS / public IP):
+
+        ```json
+        {"MYSQL_HOST":"203.0.113.10","MYSQL_PORT":"3306","MYSQL_USER":"remote_user","MYSQL_PASSWORD":"secure","MYSQL_DATABASE":"prod_db"}
+        ```
+
+        ## Features
+
+        - Execute SQL queries (`mysql_query`)
+        - List database tables (`mysql_list_tables`)
+        - Describe table schema (`mysql_describe_table`)
+        - Support for remote connections and SSH tunnels
+
+        ## Publishing (reference)
+
+        If you need to publish yourself, use a scoped name (e.g. `@your-username/mysql-mcp-server`) and run:
+
+        ```bash
+        npm login
+        npm run build
+        npm publish --access public
+        ```
+
+        ## License
+
+        MIT
+````
